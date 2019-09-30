@@ -17,7 +17,5 @@ export default {
   saveItemToCart: function(UserShoppingCartData) {
     console.log("in the post=======", UserShoppingCartData)
     return axios.post("/api/usercart", UserShoppingCartData);
-  
-
   }
 };

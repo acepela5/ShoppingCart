@@ -9,6 +9,7 @@ const userShoppingCartSchema = new Schema({
   price: { type: String, trim: true},
   size: { type: String, required: true},
   quantity: { type: String, required: false},
+  userDonation: {type: String},
   date: { type: Date, default: Date.now }
 });
 

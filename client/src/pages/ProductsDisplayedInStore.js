@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import API from "../utils/API";
-// import {List, ListItem} from "../components/List";
 import SaveButton from "../components/SaveButton";
 
 import items from "../components/ProductsToBuy";
@@ -12,13 +11,11 @@ class ProductsDisplayedInStore extends Component {
     this.state = {
       items,
       usershoppingcart: [],
-      // size: this.props.size,
       sizeValue: "",
-      size: props.size,
+      // size: props.size,
       donation,
       donationAmount: "",
       quantityValue: "",
-      test: false
     }
     this.handleSizeChange = this.handleSizeChange.bind(this);
     this.handleDonationAmount = this.handleDonationAmount.bind(this);
@@ -31,31 +28,25 @@ class ProductsDisplayedInStore extends Component {
 
   handleSizeChange = (e) => {
     console.log("EEEEEE")
-    // console.log(e.currentTarget.value)
     console.log(e.target.value)
     this.setState({
       sizeValue: e.target.value,
-
     });
   }
 
   handleDonationAmount = (e) => {
     console.log("AAAAAAAA")
-    // console.log(e.currentTarget.value)
     console.log(e.target.value)
     this.setState({
       donationAmount: e.target.value,
-
     });
   }
 
   handleQuantityChange = (e) => {
     console.log("IIIIIIIII")
-    // console.log(e.currentTarget.value)
     console.log(e.target.value)
     this.setState({
       quantityValue: e.target.value,
-
     });
   }
 
@@ -64,15 +55,13 @@ class ProductsDisplayedInStore extends Component {
     console.log(this.state.usershoppingcart, "current state of shopping cart")
 
     const newUserShoppingCart = this.state.usershoppingcart
-    // .find(usershoppingcart => usershoppingcart.id ===item.id)
     newUserShoppingCart.push(item)
-
-
     console.log(newUserShoppingCart, 'this is the shop cart')
 
     this.setState({
       usershoppingcart: newUserShoppingCart
     })
+
     let size = this.state.sizeValue;
     newUserShoppingCart.push(size);
     console.log(size, "this is the size going through*******")
@@ -80,17 +69,12 @@ class ProductsDisplayedInStore extends Component {
     let userDonation = this.state.donationAmount
     newUserShoppingCart.push(userDonation);
     console.log(userDonation, "this is user donation $$$$$$$$")
-    // .then(this.setState({
-    //   this.state.usershoppingcart.price: userDonation  
-    // })
-    // )
+    console.log(newUserShoppingCart.price, "$$$$$$$$$$$ donation $$$$$$$$")
 
     let newquantity = this.state.quantityValue
     newUserShoppingCart.push(newquantity);
     console.log(newquantity, "how many ---------------")
 
-
- 
     console.log("STATE")
     console.log(this.state.usershoppingcart)
 
@@ -100,19 +84,15 @@ class ProductsDisplayedInStore extends Component {
       description: this.state.usershoppingcart[0].description,
       price: this.state.usershoppingcart[0].price,
       size: this.state.usershoppingcart[1],
-      quantity: this.state.usershoppingcart[3]
-    }).then(result =>{
+      quantity: this.state.usershoppingcart[3],
+      userDonation: this.state.usershoppingcart[2]
+    }).then(result => {
        console.log(result.data, "--in save item to cart")
        this.setState = {
-       // items,
-        usershoppingcart: [],
-        // size: this.props.size,
+        // usershoppingcart: [],
         sizeValue: "",
-        // size: props.size,
-       // donation,
         donationAmount: "",
         quantityValue: "",
-      //  test: true
       }
 
       // }).then(console.log(this.saveItemToCart, "IN SAVE ITEM TO CART ----------"))
@@ -155,7 +135,8 @@ class ProductsDisplayedInStore extends Component {
                 <select multiple={false} name="quantity"
                   onChange={this.handleQuantityChange}
                   quantityValue={this.state.quantityValue}>
-                  <option defaultValue="">1</option>
+                  <option defaultValue="">Quantity</option>
+                  <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
                   <option value="4">4</option>
@@ -174,9 +155,9 @@ class ProductsDisplayedInStore extends Component {
               <li>
                 <SaveButton onClick={() => {
 
-                  console.log('items', items)
+                  console.log('donation', donation)
                   console.log('items-state', this.state)
-                  this.handleAddItemToCart(items);
+                  this.handleAddItemToCart(donation);
                   // alert("Added to cart!");
                   console.log(this.handleAddItemToCart, "this is in the save button click");
 
@@ -190,45 +171,12 @@ class ProductsDisplayedInStore extends Component {
                 <textarea onChange={this.handleDonationAmount}
                   donationAmount={this.state.donationAmount}
                   rows="1" cols="5" placeholder="$$$" className="userDonation"></textarea>
-
               </li>
             )
           })}
         </ul>
       </div>
-      // <div className="ProductDisplay">     
-      //   <List>
-      //    {this.state.items.map(items => {
-      //       return (
-
-      //           <li>
-      //             <h1>ITEM: {items.item} </h1>
-      //           </li>
-
-      //         <ListItem 
-
-      //           item={items.item}
-      //           price={items.price}
-      //           description={items.description}
-      //           size={items.size}
-      //           img={items.img}>
-
-      //           <SaveButton onClick={()=>{
-
-      //             console.log('items', items)
-      //             console.log('items-state', this.state)
-      //              this.handleAddItemToCart(items);
-      //               // alert("Added to cart!");
-      //               console.log(this.handleAddItemToCart, "this is in the save button click");
-
-      //           }
-      //           }>
-      //           </SaveButton>
-      //          </ListItem>
-      //         );
-      //       })}
-      //   </List>     
-      // </div>
+     
     );
   }
 
