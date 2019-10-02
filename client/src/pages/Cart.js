@@ -17,6 +17,7 @@ class Cart extends Component {
       .catch(err => console.log(err));
   };
 
+
   postUserShoppingCart = () => {
     console.log("inside post++++++++")
     API.getUserShoppingCart(this.props.match.params.id)
@@ -29,21 +30,24 @@ class Cart extends Component {
   };
 
   subTotal = (price, quantity) => {
-    // let tempSubTotal = 0
+    // if(userDonation===0){
+    //   return price = userDonation;
+      
+    // }
+   
+    // this.setState({
+    //   price: this.state.usershoppingcart.userDonation
+    // })
     console.log("WE ARE IN THE CART SUBTOTAL")
     console.log(this.state.usershoppingcart)
-    // this.state.usershoppingcart.map(elem =>  {
-
-    //   tempSubTotal = elem.price*elem.quantity
-    // })
-    return price * quantity
+    return (price * quantity )
   }
 
 
   total = () => {
     let tempTotal = 0
     this.state.usershoppingcart.map(elem => {
-      tempTotal = tempTotal + ( elem.price * elem.quantity)
+      tempTotal = tempTotal + ( elem.price * elem.quantity )
     })
     console.log("TOTAL", tempTotal)
     return tempTotal
@@ -67,8 +71,9 @@ class Cart extends Component {
               <p>${usershoppingcart.price}.00</p>
               <p>{usershoppingcart.size}</p>
               <p>{usershoppingcart.quantity}</p>
+              <p>{usershoppingcart.userDonation}</p>
               <DeleteBtn onClick={() => this.handleItemDelete(usershoppingcart._id)} />
-              <h4>Current SubTotal: ${usershoppingcart.price * usershoppingcart.quantity}.00</h4>
+              <h4>Current SubTotal: ${usershoppingcart.price * usershoppingcart.quantity }.00</h4>
 
             </li>
           )}

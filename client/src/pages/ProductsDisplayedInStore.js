@@ -39,7 +39,7 @@ class ProductsDisplayedInStore extends Component {
     console.log(e.target.value)
     this.setState({
       donationAmount: e.target.value,
-    });
+    })
   }
 
   handleQuantityChange = (e) => {
@@ -68,6 +68,7 @@ class ProductsDisplayedInStore extends Component {
 
     let userDonation = this.state.donationAmount
     newUserShoppingCart.push(userDonation);
+    
     console.log(userDonation, "this is user donation $$$$$$$$")
     console.log(newUserShoppingCart.price, "$$$$$$$$$$$ donation $$$$$$$$")
 
@@ -82,11 +83,14 @@ class ProductsDisplayedInStore extends Component {
       item: this.state.usershoppingcart[0].item,
       img: this.state.usershoppingcart[0].img,
       description: this.state.usershoppingcart[0].description,
-      price: this.state.usershoppingcart[0].price,
+      // price: this.state.usershoppingcart[0].price,
+      price: this.state.donationAmount > 0 ? this.state.donationAmount : this.state.usershoppingcart[0].price,
+
       size: this.state.usershoppingcart[1],
-      quantity: this.state.usershoppingcart[3],
+      quantity: this.state.donationAmount > 0 ? 1 : this.state.usershoppingcart[3],
       userDonation: this.state.usershoppingcart[2]
-    }).then(result => {
+    })
+    .then(result => {
        console.log(result.data, "--in save item to cart")
        this.setState = {
         // usershoppingcart: [],
